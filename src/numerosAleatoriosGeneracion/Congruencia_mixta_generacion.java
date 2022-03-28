@@ -71,6 +71,9 @@ public class Congruencia_mixta_generacion {
         int c = generacion_c(m);
         int numero_aleatorio;
 
+        int largo_e;
+        double numero_pseudo_aleatorio;
+
         String numero_y_datos_generacion;
 
         while (Numeros_aleatorios.size() < m) {
@@ -80,7 +83,11 @@ public class Congruencia_mixta_generacion {
             //System.out.println("m=" + m + " x=" + x + " a=" + a + " c=" + c + " X"+ contador + "=" + numero_aleatorio);
             x = numero_aleatorio;
 
-            numero_y_datos_generacion = m + " " + x + " " + a + " " + c + " " + numero_aleatorio;
+            largo_e = String.valueOf(numero_aleatorio).length();
+
+            numero_pseudo_aleatorio = numero_aleatorio/ Math.pow(10, largo_e);
+
+            numero_y_datos_generacion = m + " " + x + " " + a + " " + c + " " + numero_pseudo_aleatorio;
             
             Numeros_aleatorios.add(numero_y_datos_generacion);
             
@@ -99,6 +106,9 @@ public class Congruencia_mixta_generacion {
         int c = generacion_c(m);
         int numero_aleatorio;
 
+        int largo_e;
+        double numero_pseudo_aleatorio;
+
         String numero_y_datos_generacion;
 
         while (Numeros_aleatorios.size() < m) {
@@ -108,7 +118,12 @@ public class Congruencia_mixta_generacion {
             //System.out.println("m=" + m + " x=" + x + " a=" + a + " c=" + c + " X"+ contador + "=" + numero_aleatorio);
             x = numero_aleatorio;
 
-            numero_y_datos_generacion = m + " " + x + " " + a + " " + c + " " + numero_aleatorio;
+            largo_e = String.valueOf(numero_aleatorio).length();
+
+            numero_pseudo_aleatorio = numero_aleatorio/ Math.pow(10, largo_e);
+
+
+            numero_y_datos_generacion = m + " " + x + " " + a + " " + c + " " + numero_pseudo_aleatorio;
             
             Numeros_aleatorios.add(numero_y_datos_generacion);
             

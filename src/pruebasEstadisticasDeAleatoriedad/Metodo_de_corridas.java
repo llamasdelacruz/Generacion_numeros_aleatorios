@@ -8,13 +8,13 @@ import java.util.List;
 public class Metodo_de_corridas {
 
 
-    public static ArrayList<Integer> convertir_arrayList_A_enteros(List<String> listaAnterior){
+    public static ArrayList<Double> convertir_arrayList_A_decimales(List<String> listaAnterior){
 
-        ArrayList<Integer> Lista_nueva = new ArrayList<Integer>();
+        ArrayList<Double> Lista_nueva = new ArrayList<Double>();
 
         for (String numero_aleatorio : listaAnterior) {
 
-            Lista_nueva.add(Integer.parseInt(numero_aleatorio));
+            Lista_nueva.add(Double.parseDouble(numero_aleatorio));
             
         }
 
@@ -24,11 +24,11 @@ public class Metodo_de_corridas {
     }
 
 
-    public static int contar_corridas(ArrayList<Integer> lista_numeros_aleatorios){
+    public static int contar_corridas(ArrayList<Double> lista_numeros_aleatorios){
 
         int numero_corridas = 0;
-        int numero_actual;
-        int numero_anterior = lista_numeros_aleatorios.get(1);
+        double numero_actual;
+        double numero_anterior = lista_numeros_aleatorios.get(1);
         String estado_actual= "";
         String estado_anterior = "c";
 
@@ -68,7 +68,7 @@ public class Metodo_de_corridas {
     public static  ArrayList<Object> proceso_metodo_corridas(float valor_error_porcentaje, List<String> listaNumeros){
 
         float cantidad_de_numeros_a_evaluar = listaNumeros.size();
-        ArrayList<Integer> Lista_numeros_convertida = convertir_arrayList_A_enteros(listaNumeros);
+        ArrayList<Double> Lista_numeros_convertida = convertir_arrayList_A_decimales(listaNumeros);
         float numero_de_corridas = contar_corridas(Lista_numeros_convertida);
         
        
@@ -97,7 +97,7 @@ public class Metodo_de_corridas {
             h0 = true;
 
         }
-
+        System.out.println("Numero corridas:" + numero_de_corridas);
         Resultados_obtenidos.add(valor_alfa);
         Resultados_obtenidos.add(formula);
         Resultados_obtenidos.add(valor_alfa_menos1);
@@ -111,9 +111,9 @@ public class Metodo_de_corridas {
 
     /*public static void main(String[] args) {
 
-        List<String> numerosAleatorios = Arrays.asList("89", "49", "99", "33", "1");
+        List<String> numerosAleatorios = Arrays.asList("0.89", "0.49", "0.99", "0.33", "0.1", "0.3566", "0.637");
         
-        //ArrayList<Object> m = Metodo_de_corridas.proceso_metodo_corridas(10f, numerosAleatorios);
+        ArrayList<Object> m = Metodo_de_corridas.proceso_metodo_corridas(10, numerosAleatorios);
         for (Object object : m) {
             System.out.println(object);
         }

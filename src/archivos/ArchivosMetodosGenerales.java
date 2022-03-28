@@ -163,7 +163,7 @@ public class ArchivosMetodosGenerales {
             
             //si el registro tiene el texto 
             if(palabra_comparacion.find()){
-                System.out.println(registro);
+                //System.out.println(registro);
                 
                 RegistrosCoincidentes.add(registro);
                 
@@ -181,7 +181,8 @@ public class ArchivosMetodosGenerales {
         
         ArchivosMetodosGenerales  m = new ArchivosMetodosGenerales ();
         m.establecer_nombre_archivo("ApendiceC");
-                                n    0.5   0.05  0.25  0.01
+                              //  n    0.5   0.05  0.25  0.01
+        m.escribir_linea_archivo("1  0.45  3.84  5.02  6.63");
         m.escribir_linea_archivo("2  1.39  5.99  7.38  9.21");
         m.escribir_linea_archivo("3  2.37  7.81  9.35  11.34");
         m.escribir_linea_archivo("4  3.36  9.49  11.14  13.28");
@@ -191,8 +192,20 @@ public class ArchivosMetodosGenerales {
         m.escribir_linea_archivo("8  7.34  15.51  17.53  20.09");
         m.escribir_linea_archivo("9  8.34  16.92  19.02  21.67");
         m.escribir_linea_archivo("10  9.34  18.31  20.48  23.21");
+
+        m.escribir_linea_archivo("11  10.34  19.68  21.92  24.72");
+        m.escribir_linea_archivo("12  11.34  21.03  23.34  26.22");
+        m.escribir_linea_archivo("13  12.34  22.36  24.74  27.69");
+        m.escribir_linea_archivo("14  13.34  23.68  26.12  29.14");
+        m.escribir_linea_archivo("15  14.34  25.00  27.49  30.58");
+        m.escribir_linea_archivo("16  15.34  26.30  28.85  32.00");
+        m.escribir_linea_archivo("17  16.34  27.59  30.19  33.41");
+        m.escribir_linea_archivo("18  17.34  28.87  31.53  34.81");
+        m.escribir_linea_archivo("19  18.34  30.14  32.85  36.19");
+        m.escribir_linea_archivo("20  19.34  31.41  34.17  37.57");
         
-        List<String> chl = m.buscar_registros_o_registro(0, "5");
+
+        List<String> chl = m.buscar_registros_o_registro(0, "1");
         for (String string : chl) {
             System.out.println(string);
         }

@@ -13,6 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import pruebasEstadisticasDeAleatoriedad.Metodo_de_corridas;
 import pruebasEstadisticasDeAleatoriedad.Prueba_de_frecuencias;
 
+
+import archivos.ArchivosMetodosGenerales;
+
 /**
  *
  * @author tetil
@@ -20,6 +23,7 @@ import pruebasEstadisticasDeAleatoriedad.Prueba_de_frecuencias;
 public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
 
     List<String> NumerosAleatorios;
+    ArchivosMetodosGenerales conexionArchivoNumerosAleatorios = new ArchivosMetodosGenerales();
     
     /**
      * Creates new form ComprobacionNumerosAleatorios
@@ -29,6 +33,9 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
 
         NumerosAleatorios = arreglo;
+        conexionArchivoNumerosAleatorios.establecer_nombre_archivo("NumerosAleatorios");
+
+        
       
     }
 
@@ -50,6 +57,7 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
         Corridas = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TextArea = new javax.swing.JTextArea();
+        Agregar_archivo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +113,13 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
         TextArea.setText("\n");
         jScrollPane2.setViewportView(TextArea);
 
+        Agregar_archivo.setText("Agregar al archivo");
+        Agregar_archivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Agregar_archivoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,11 +134,13 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(error_caja, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(64, 64, 64)
+                                .addComponent(Agregar_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,7 +157,9 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Aceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .addComponent(Agregar_archivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(22, 22, 22))
         );
 
@@ -162,10 +181,10 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
             double x0 = (double) Datos.get(0);
             double tabla = (double) Datos.get(1);
             boolean h0 = (boolean) Datos.get(2);
-            String veredicto;
 
             if(h0){
                 veredicto = "Se acepta H0";
+                
             }else{
                 veredicto = "Se rechaza H0";
             }
@@ -181,10 +200,10 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
             double formula = (double) Datos.get(1);
             double valor_alfa_menos1 = (double) Datos.get(2);
             boolean h0 = (boolean) Datos.get(3);
-            String veredicto;
 
             if(h0){
                 veredicto = "Se acepta H0";
+                
             }else{
                 veredicto = "Se rechaza H0";
             }
@@ -198,6 +217,23 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_AceptarMouseClicked
+
+    private void Agregar_archivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Agregar_archivoMouseClicked
+        // TODO add your handling code here
+        
+        if(!veredicto.isBlank() && veredicto.equalsIgnoreCase("Se acepta H0")){
+            for (String numero : NumerosAleatorios) {
+
+                conexionArchivoNumerosAleatorios.escribir_linea_archivo(numero);
+
+            }
+
+            JOptionPane.showMessageDialog(null, "Se han agregado los numeros al archivo", "Se acepta H0", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Debe realizarse una prueba de aleatoriedad y que en esta se acepte H0 para podera agregar los numeros al archivo", "UPS", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_Agregar_archivoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,9 +270,11 @@ public class ComprobacionNumerosAleatorios extends javax.swing.JFrame {
         });
     }*/
     
+    String veredicto = "";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
+    private javax.swing.JButton Agregar_archivo;
     private javax.swing.JRadioButton Corridas;
     private javax.swing.JRadioButton Frecuencia;
     private javax.swing.ButtonGroup GrupoPruebas;

@@ -61,11 +61,21 @@ public class GeneracionNumerosAleatoriosVentana extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de Generacion"));
 
         GrupoTipoDeGeneracion.add(RadioCuadrados);
+        RadioCuadrados.setSelected(true);
         RadioCuadrados.setText("Cuadrados");
+        RadioCuadrados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RadioCuadradosMouseClicked(evt);
+            }
+        });
 
         GrupoTipoDeGeneracion.add(RadioMixto);
-        RadioMixto.setSelected(true);
         RadioMixto.setText("Mixto");
+        RadioMixto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RadioMixtoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,9 +105,19 @@ public class GeneracionNumerosAleatoriosVentana extends javax.swing.JFrame {
         GrupoSemillaEntrada.add(EntradaManual);
         EntradaManual.setSelected(true);
         EntradaManual.setText("Entrada Manual");
+        EntradaManual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EntradaManualMouseClicked(evt);
+            }
+        });
 
         GrupoSemillaEntrada.add(Aleatorio);
         Aleatorio.setText("Aleatoria");
+        Aleatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AleatorioMouseClicked(evt);
+            }
+        });
         Aleatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AleatorioActionPerformed(evt);
@@ -370,6 +390,30 @@ public class GeneracionNumerosAleatoriosVentana extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_VerificarMouseClicked
+
+    private void RadioCuadradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadioCuadradosMouseClicked
+        // TODO add your handling code here:
+        etiqueta1.setText("Semilla:");
+        etiqueta2.setText("Cantidad:");
+    }//GEN-LAST:event_RadioCuadradosMouseClicked
+
+    private void RadioMixtoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RadioMixtoMouseClicked
+        // TODO add your handling code here:
+        
+        etiqueta1.setText("X0:");
+        etiqueta2.setText("valor de d:");
+    }//GEN-LAST:event_RadioMixtoMouseClicked
+
+    private void AleatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AleatorioMouseClicked
+        // TODO add your handling code here:
+        
+        semilla_caja.setEnabled(false);
+    }//GEN-LAST:event_AleatorioMouseClicked
+
+    private void EntradaManualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EntradaManualMouseClicked
+        // TODO add your handling code here:
+        semilla_caja.setEnabled(true);
+    }//GEN-LAST:event_EntradaManualMouseClicked
     
     
 
@@ -408,10 +452,7 @@ public class GeneracionNumerosAleatoriosVentana extends javax.swing.JFrame {
         });
     }
     
-    private List<String> retornar_decimales_metodo(List<String> Aleatorios){
-        
-        
-    }
+
     private void Clear_Table1(){
         for (int i = 0; i < tabla.getRowCount(); i++) {
             tabla.removeRow(i);

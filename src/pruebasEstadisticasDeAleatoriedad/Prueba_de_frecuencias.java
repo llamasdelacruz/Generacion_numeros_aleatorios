@@ -15,9 +15,8 @@ public class Prueba_de_frecuencias {
         ArrayList<Double> Lista_nueva = new ArrayList<Double>();
 
         for (String numero_aleatorio : listaAnterior) {
-            
 
-            Lista_nueva.add(Double.parseDouble(numero_aleatorio)/100);
+            Lista_nueva.add(Double.parseDouble(numero_aleatorio));
             
         }
 
@@ -28,9 +27,9 @@ public class Prueba_de_frecuencias {
 
     public static float numero_particiones_sacar(Float cantidad_de_numeros){
 
-        float particiones = 10;
+        float particiones = 20;
 
-        while (particiones >2) {
+        while (particiones >1) {
 
             if (cantidad_de_numeros%particiones == 0) {
 
@@ -87,7 +86,6 @@ public class Prueba_de_frecuencias {
         float FE = (float) (Numeros.size()/ particiones);
 
         double[] FO = Prueba_de_frecuencias.hacer_cuenta_numero_intervalos(NumerosAleatorios,  particiones);
-       
 
         float alfa = valor_error_porcentaje/100;
 
@@ -152,7 +150,8 @@ public class Prueba_de_frecuencias {
     
     /*public static void main(String[] args) {
 
-        List<String> numerosAleatorios = Arrays.asList("89", "49", "99", "33", "1");
+        List<String> numerosAleatorios = Arrays.asList("0.89", "0.49", "0.99", "0.33", "0.1");
+
     
 
        
