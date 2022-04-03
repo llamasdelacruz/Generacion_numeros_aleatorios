@@ -22,6 +22,7 @@ public class Montecarlo extends javax.swing.JFrame {
     public Montecarlo() {
         initComponents();
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        
         titulo = new String[]{"Revistas iniciales", "Vendidas", "Sobrantes", "Devueltas" , "Compradas","Totales resto de mes" ,"Vendidas resto de mes", "Devueltas","Ganancias mes"};
         tabla_modelo.setColumnIdentifiers(titulo);
         tabla.setModel(tabla_modelo);

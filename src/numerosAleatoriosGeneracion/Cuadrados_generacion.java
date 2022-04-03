@@ -60,7 +60,8 @@ public class Cuadrados_generacion {
         int semilla = Integer.parseInt(semilla_inicial);
         int semilla_al_cuadrdo;
 
-        double numero_pseudo_aleatorio;
+        double numero_pseudo_aleatorio = 0;
+        double  numero_pseudo_aleatorio_anterior;
 
         String cadena_con_ceros, Numero_aleatorio_cadena;
         String numero_y_datos_generacion;
@@ -69,7 +70,8 @@ public class Cuadrados_generacion {
             
             while(Numeros_aleatorios.size()  < cantidad_de_aleatorios ){
                 
-                
+                numero_pseudo_aleatorio_anterior = numero_pseudo_aleatorio;
+
                 semilla_al_cuadrdo = (int)(Math.pow(semilla, 2));
 
                 cadena_con_ceros = colocacion_ceros_izquierda(semilla_al_cuadrdo,largo_2e);
@@ -106,11 +108,42 @@ public class Cuadrados_generacion {
 
                     numero_pseudo_aleatorio = Integer.parseInt(Numero_aleatorio_cadena)/Math.pow(10, largo_e);
 
-                    numero_y_datos_generacion = semilla +  " " + largo_e + " " + largo_2e + " " + semilla_al_cuadrdo + " " + numero_pseudo_aleatorio ;
+                    if(numero_pseudo_aleatorio == numero_pseudo_aleatorio_anterior){
 
-                    Numeros_aleatorios.add(numero_y_datos_generacion);
+
+                        semilla_inicial = "0";
+
+                        while(semilla_inicial.length()%2 != 0){
+
+                        
+                            try{
+                                semilla_inicial = JOptionPane.showInputDialog("Dame una nueva semilla con un numero de digitos pares:");
+                                semilla = Integer.parseInt(semilla_inicial);
+                            }catch(Exception e){
+                                
+                                JOptionPane.showMessageDialog(null, "Debe colocar una semilla valida" +e, "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                            
+        
+                        
+                        }
+                        
+                        largo_e = semilla_inicial.length();
+                        
+                        largo_2e = largo_e*2;
+
                     
-                    semilla = Integer.parseInt(Numero_aleatorio_cadena);
+                    }else{
+
+                        numero_y_datos_generacion = semilla +  " " + largo_e + " " + largo_2e + " " + semilla_al_cuadrdo + " " + numero_pseudo_aleatorio ;
+
+                        Numeros_aleatorios.add(numero_y_datos_generacion);
+                        
+                        semilla = Integer.parseInt(Numero_aleatorio_cadena);
+
+                    }
+
+                    
                 
                 }
             
@@ -134,13 +167,17 @@ public class Cuadrados_generacion {
         int largo_2e = largo_e*2;
         int semilla = Integer.parseInt(semilla_inicial);
         int semilla_al_cuadrdo;
-        double numero_pseudo_aleatorio;
+        double numero_pseudo_aleatorio = 0;
+        double  numero_pseudo_aleatorio_anterior;
         String cadena_con_ceros, Numero_aleatorio_cadena;
         String numero_y_datos_generacion;
+        
         
         if(largo_e %2 == 0){
             
             while(Numeros_aleatorios.size()  < cantidad_de_aleatorios){
+
+                numero_pseudo_aleatorio_anterior = numero_pseudo_aleatorio;
 
                 semilla_al_cuadrdo = (int)(Math.pow(semilla, 2));
 
@@ -165,11 +202,26 @@ public class Cuadrados_generacion {
 
                     numero_pseudo_aleatorio = Integer.parseInt(Numero_aleatorio_cadena)/Math.pow(10, largo_e);
 
-                    numero_y_datos_generacion = semilla +  " " + largo_e + " " + largo_2e + " " + semilla_al_cuadrdo + " " + numero_pseudo_aleatorio;
+                    if(numero_pseudo_aleatorio == numero_pseudo_aleatorio_anterior){
 
-                    Numeros_aleatorios.add(numero_y_datos_generacion);
+                        semilla_inicial = Semilla_aleatoria();
                     
-                    semilla = Integer.parseInt(Numero_aleatorio_cadena);
+                        semilla  = Integer.parseInt(semilla_inicial);
+                        
+                        largo_e = semilla_inicial.length();
+                        
+                        largo_2e = largo_e*2;
+
+
+                    }else{
+
+                        numero_y_datos_generacion = semilla +  " " + largo_e + " " + largo_2e + " " + semilla_al_cuadrdo + " " + numero_pseudo_aleatorio;
+
+                        Numeros_aleatorios.add(numero_y_datos_generacion);
+                        
+                        semilla = Integer.parseInt(Numero_aleatorio_cadena);
+                    }
+                    
                 
                 }
             
