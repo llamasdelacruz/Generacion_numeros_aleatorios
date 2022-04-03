@@ -4,6 +4,12 @@
  */
 package Interfaces;
 
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+import montecarloProblemas.*;
 /**
  *
  * @author tetil
@@ -16,6 +22,9 @@ public class Montecarlo extends javax.swing.JFrame {
     public Montecarlo() {
         initComponents();
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        titulo = new String[]{"Revistas iniciales", "Vendidas", "Sobrantes", "Devueltas" , "Compradas","Totales resto de mes" ,"Vendidas resto de mes", "Devueltas","Ganancias mes"};
+        tabla_modelo.setColumnIdentifiers(titulo);
+        tabla.setModel(tabla_modelo);
     }
 
     /**
@@ -27,57 +36,126 @@ public class Montecarlo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Juegosdados = new javax.swing.JButton();
-        JuagoVolados = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        caja_numero_meses = new javax.swing.JTextField();
+        Boton_aceptar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        gananciaTotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Juegosdados.setText("Juago de los dados");
-        Juegosdados.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel1.setText("Problema  de las revistas");
+
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Revistas iniciales", "Vendidas ", "Sobrantes", "Devueltas", "Compradas resto de mes", "Vendidas resto de mes", "Sobrantes y devueltas", "Ganancias del mes"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+
+        jLabel2.setText("Número de meses:");
+
+        Boton_aceptar.setText("Aceptar");
+        Boton_aceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JuegosdadosMouseClicked(evt);
+                Boton_aceptarMouseClicked(evt);
             }
         });
 
-        JuagoVolados.setText("Juego de volados");
-        JuagoVolados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JuagoVoladosMouseClicked(evt);
-            }
-        });
+        jLabel3.setText("Ganancia total:");
+
+        gananciaTotal.setText("\"\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caja_numero_meses, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addComponent(Boton_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Juegosdados, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(JuagoVolados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(292, 292, 292)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(gananciaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(Juegosdados, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(JuagoVolados, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(caja_numero_meses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Boton_aceptar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gananciaTotal))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JuegosdadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JuegosdadosMouseClicked
+    private void Boton_aceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_aceptarMouseClicked
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_JuegosdadosMouseClicked
+        try {
+            Clear_Table1();
+            int numero_meses = Integer.parseInt(caja_numero_meses.getText());
 
-    private void JuagoVoladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JuagoVoladosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JuagoVoladosMouseClicked
+            ArrayList<String> resultados = revistas_conexion.procesoRevistas(numero_meses);
+
+            for (int i = 0; i < resultados.size()-1; i++) {
+
+                
+                columnas = resultados.get(i).split(" ");
+                
+
+                tabla_modelo.addRow(new Object[]{ columnas[0], columnas[1], columnas[2], columnas[3], columnas[4], columnas[5]
+                                    , columnas[6], columnas[7], columnas[8]});
+            }
+            gananciaTotal.setText(resultados.get(resultados.size()-1));
+            
+
+        } catch (Exception e) {
+            //TODO: handle exception
+            JOptionPane.showMessageDialog(null, "Debes rellenar el campo 'Numero de meses' ", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        
+        
+    }//GEN-LAST:event_Boton_aceptarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -114,8 +192,28 @@ public class Montecarlo extends javax.swing.JFrame {
         });
     }
 
+    private void Clear_Table1(){
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla_modelo.removeRow(i);
+        i-=1;
+        }
+    }
+
+    String[] titulo;
+    String[] columnas;
+
+    DefaultTableModel tabla_modelo = new DefaultTableModel();
+
+    Revistas revistas_conexion = new Revistas();
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JuagoVolados;
-    private javax.swing.JButton Juegosdados;
+    private javax.swing.JButton Boton_aceptar;
+    private javax.swing.JTextField caja_numero_meses;
+    private javax.swing.JLabel gananciaTotal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }
